@@ -1,22 +1,45 @@
+"""
+TBD
+Since 2022
+"""
 
 from src.core.driver_factory import DriverFactory
+from selenium import webdriver
 
 
 class DriverManager():
+    """
+    Manager the driver used during the test
+    """
 
-    __driver = None
+    def __init__(self) -> None:
+        self.driver: webdriver = None
 
-    @staticmethod
-    def start(browser):
-        DriverManager.__driver = DriverFactory.get(browser)
+    def start(self, browser):
+        """
+        Start the browser
 
-    @staticmethod
-    def driver():
-        return DriverManager.__driver
+        Args:
+            browser (str): brownser name
+        """
+        return DriverFactory().get(browser)
 
-    @staticmethod
-    def quit():
-        DriverManager.__driver.quit()
+    def quit(self):
+        """
+        Close the browser and terminate the driver
+        """
+        self.driver.quit()
+
+    @property
+    def driver(self):
+        """
+        Return the driver object
+
+        Returns:
+            webdriver: driver used during test
+        """
+        return self.driver
+
 
 # browsers = ["chrome", "edge", "firefox", "safari"]
 
@@ -25,5 +48,3 @@ class DriverManager():
 #   DriverManager.start(browser)
 #   DriverManager.driver().get("http://www.python.org")
 #   DriverManager.quit()
-
-

@@ -2,6 +2,6 @@ setup:
 	pip install -r requirements.txt
 
 testAll:
-	pytest -n 3 test/
+	pytest -n auto test/ -v
 
 test: testAll
